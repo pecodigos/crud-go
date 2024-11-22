@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crud-go/src/configuration/database/mongodb"
 	"crud-go/src/configuration/logger"
 	"crud-go/src/controller"
 	"crud-go/src/controller/routes"
@@ -11,6 +12,8 @@ import (
 
 func main() {
 	logger.Info("About to start app.")
+
+	mongodb.InitConnection()
 
 	service := service2.NewUserDomainService()
 	userController := controller.NewUserControllerInterface(service)
