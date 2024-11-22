@@ -6,6 +6,7 @@ import (
 	"crud-go/src/controller/model/request"
 	"crud-go/src/model"
 	"crud-go/src/model/service"
+	"crud-go/src/view"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"net/http"
@@ -15,7 +16,7 @@ var (
 	UserDomainInterface model.UserDomainInterface
 )
 
-func CreateUser(c *gin.Context) {
+func (uc *userControllerInterface) CreateUser(c *gin.Context) {
 	logger.Info("Init CreateUser controller.",
 		zap.String("journey", "createUser"),
 	)
@@ -47,5 +48,5 @@ func CreateUser(c *gin.Context) {
 		zap.String("journey", "createUser"),
 	)
 
-	c.String(http.StatusOK, "")
+	c.JSON(http.StatusOK, view.ConvertDomainToResponse(domain))
 }
